@@ -30,6 +30,6 @@ app.get('/', (req, res) => {
 app.use('/signin', require('./routes/api/users/signin'));
 app.use('/api/users', require('./routes/api/users/signup'));
 
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${ PORT }`));
