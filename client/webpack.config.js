@@ -12,7 +12,7 @@ module.exports = {
     },
     devServer: {
         hot: true,
-        port: 9001
+        port: 5001
     },
     module: {
         rules: [
