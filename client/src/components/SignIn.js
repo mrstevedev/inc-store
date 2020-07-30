@@ -12,7 +12,8 @@ export class SignIn extends Component {
     this.state = {
       email: "",
       password: "",
-      error: false,
+      errorEmail: false,
+      errorPassword: false,
       signin: "Sign in",
       buttonText: "Show"
     };
@@ -31,6 +32,13 @@ export class SignIn extends Component {
 
   handleChange = (event) => {
       const value = event.target.value;
+
+      if(this.state.email !== '') {
+          this.setState({ errorEmail: false });
+      }
+      if(this.state.password !== '') {
+        this.setState({ errorPassword: false });
+    }
       this.setState({
         [event.target.name]: value
       })
@@ -39,13 +47,13 @@ export class SignIn extends Component {
   handleSignIn = (event) => {
     event.preventDefault();
 
-    if (this.state.username === "" || this.state.password === "") {
-      this.setState({ error: true });
-    }
+    if (this.state.email === "" || this.state.errorPassword === "") {
+      this.setState({ errorEmail: true, errorPassword: true });
+    } 
 
     axios({
       method: "post",
-      url: "http://localhost:9000/signin",
+      url: "http://localhost:5000/signin",
       config: { headers: { "Content-Type": "application/json" } },
     })
       .then((response) => console.log(response))
@@ -57,20 +65,22 @@ export class SignIn extends Component {
     <Fragment>
       <div className="inc__form">
         <h2>Sign In</h2>
-        <p className="signin__createAccountNotice">
+        <p className="inc__form--header-notice">
           New to International Concepts?&nbsp;
           <Link to="/signup">
             <span>Create an account</span>.
           </Link>
         </p>
-        <form>
+        <form onSubmit={this.handleSignIn.bind(this)}>
           <label>Email</label>
           <input
-            type="text"
+            type="email"
             name="email"
             onChange={this.handleChange}
-            className={this.state.error === true ? "error" : ""}
+            className={this.state.errorEmail === true ? "error" : ""}
           />
+          {this.state.errorEmail === true ?  <div className="inc__form--error-msg">Email is required</div> : ""}
+         
           <label>Password</label>
           <div className="input-control">
             <input
@@ -78,12 +88,13 @@ export class SignIn extends Component {
               id="password"
               name="password"
               onChange={this.handleChange}
-              className={this.state.error === true ? "error" : ""}
+              className={this.state.errorPassword === true ? "error" : ""}
             />
             <ShowToggle 
                 buttonText={this.state.buttonText}
                 handleShowToggle={this.handleShowToggle} />
           </div>
+          {this.state.errorPassword === true ?  <div className="inc__form--error-msg">Password is required</div> : ""}
           <p>
             <Link to="/signin/password-reset">Forgot password?</Link>
           </p>
@@ -98,7 +109,6 @@ export class SignIn extends Component {
           <div>
             <FormBtn
               btnText={this.state.signin}
-              handleSignIn={this.handleSignIn}
             />
           </div>
         </form>
