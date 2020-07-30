@@ -12,6 +12,11 @@ export default class ShowToggle extends Component {
       background: #fff;
       padding: 0.3rem 1rem;
       border-radius: 3px;
+
+      ::selection {
+        background-color: transparent;
+        color: #333;
+    }
   }
     `;
     return (
