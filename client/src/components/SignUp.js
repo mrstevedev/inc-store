@@ -1,4 +1,4 @@
-import React, { Component, PureComponent, Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import ShowToggle from "./ShowToggle";
 import FormBtn from "./FormBtn";
 import axios from "axios";
@@ -6,7 +6,7 @@ import Ad from "./Ad";
 
 import { Link } from "react-router-dom";
 
-export class SignUp extends PureComponent {
+export class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
