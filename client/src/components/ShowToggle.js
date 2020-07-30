@@ -11,7 +11,7 @@ export default class ShowToggle extends Component {
       cursor: pointer;
       background: #fff;
       padding: 0.3rem 1rem;
-      border-radius: 3px;
+    //border-radius: 3px;
 
       ::selection {
         background-color: transparent;
