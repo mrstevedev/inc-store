@@ -95,8 +95,7 @@ body {
       cursor: auto;
     }
     svg {
-      margin: 0 0px 0px 9px;
-      margin-top: 0px;
+      margin: 1px 3px 0px 3px;
       // position: absolute;
     }
     a {
@@ -142,8 +141,27 @@ body {
       font-weight: 500;
     }
 
-    .signin__createAccountNotice {
+    .inc__form--error-msg {
+      color: #d64d4d;
+      font-weight: bold;
+      text-align: right;
+    }
+
+    .inc__form--header-notice {
       margin: 1rem 0;
+      
+      a {
+        span {
+          background-image: linear-gradient(0deg,#393939,#393939);
+          background-position: bottom;
+          background-repeat: no-repeat;
+          background-size: 100% 1px;
+          border-bottom: 1px solid transparent;
+          cursor: pointer;
+          text-decoration: none;
+          transition: border-color .3s;
+        }
+      }
     }
 
     .input-control {
@@ -164,15 +182,24 @@ body {
       margin: 0.7rem 0;
       text-indent: 1rem;
       border-radius: 3px;
+      transition: .22s ease-in-out;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="email"]:focus {
+      background: #f1f1f1;
+      border: none;
+      border-bottom: solid 2px #000;
     }
 
     .error {
       border-bottom: solid 2px !important;
-      border-bottom-color: #ffa4a4 !important;
+      border-bottom-color: #ff7171 !important;
     }
 
     .inc__form--terms {
-      margin: 0 0 1rem 0;
+      margin: 1rem 0 1rem 0;
     }
 
     .keep__signedin {
