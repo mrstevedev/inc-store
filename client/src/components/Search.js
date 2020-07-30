@@ -15,8 +15,8 @@ class Search extends Component {
       <Search>
         <a href="#" onClick={this.handleSearch}>
           <svg
-            width="19"
-            height="19"
+            width="23"
+            height="23"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
