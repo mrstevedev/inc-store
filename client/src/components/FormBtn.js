@@ -39,7 +39,7 @@ export default class FormBtn extends PureComponent {
           color="rgba(57, 156, 172, 1)"
           secondaryColor="rgba(0, 0, 0, 0.44)"
         />
-        <span>{this.props.btnText}</span>
+        <span className="inc__form-btn--text">{this.props.btnText}</span>
       </Button>
     );
   }
