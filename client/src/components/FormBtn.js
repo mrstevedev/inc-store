@@ -19,6 +19,11 @@ export default class FormBtn extends PureComponent {
                 border: solid 1px #000;
                 color: #000;
             }
+            &:active {
+                background: #000;
+                border: solid 1px #000;
+                color: #fff;
+            }
         `;
         return <Button onClick={this.props.handleSignIn}>{ this.props.btnText }</Button>
     }
