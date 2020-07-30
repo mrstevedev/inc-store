@@ -71,6 +71,7 @@ export class SignUp extends Component {
         console.log(res.data);
         if (res.data.success === true) {
           this.setState({ success: "true", formSubmit: true });
+          this.props.history.push('/signin');
         } else {
           this.setState({ success: false });
         }
