@@ -20,6 +20,7 @@ export class SignUp extends Component {
       errorLastName: false,
       errorEmail: false,
       errorPassword: false,
+      formSubmit: false,
       success: false,
     };
   }
@@ -69,7 +70,7 @@ export class SignUp extends Component {
       .then((res) => {
         console.log(res.data);
         if (res.data.success === true) {
-          this.setState({ success: "true" });
+          this.setState({ success: "true", formSubmit: true });
         } else {
           this.setState({ success: false });
         }
@@ -197,7 +198,9 @@ export class SignUp extends Component {
                   Terms & Conditions.
                 </p>
                 <div>
-                  <FormBtn btnText={this.state.signup} />
+                  <FormBtn
+                    formSubmit={this.state.formSubmit}
+                    btnText={this.state.signup} />
                 </div>
               </form>
             </Fragment>
