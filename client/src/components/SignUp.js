@@ -21,7 +21,6 @@ export class SignUp extends Component {
       errorEmail: false,
       errorPassword: false,
       formSubmit: false,
-      success: false,
     };
   }
 
@@ -70,10 +69,8 @@ export class SignUp extends Component {
       .then((res) => {
         console.log(res.data);
         if (res.data.success === true) {
-          this.setState({ success: "true", formSubmit: true });
+          this.setState({ formSubmit: true });
           this.props.history.push('/signin');
-        } else {
-          this.setState({ success: false });
         }
       })
       .catch((err) => console.log(err));
@@ -95,7 +92,6 @@ export class SignUp extends Component {
       <Fragment>
         <div className="inc__form">
           <h2>Create Account</h2>
-          {this.state.success === false ? (
             <Fragment>
               <p className="inc__form--header-notice">
                 Already have an account?{" "}
@@ -200,17 +196,6 @@ export class SignUp extends Component {
                 </div>
               </form>
             </Fragment>
-          ) : (
-            <div>
-              <h2>Your account was created successfully</h2>
-              <p className="inc__form--header-notice">
-                You can sign in now{" "}
-                <Link to="/signin">
-                  <span>Sign in</span>.
-                </Link>
-              </p>
-            </div>
-          )}
         </div>
         <Ad />
       </Fragment>
