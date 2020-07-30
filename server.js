@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
+const morgan = require('morgan');
 
 // Load env vars
 dotenv.config({ path: './config/config.env' });
@@ -16,6 +17,8 @@ const app = express();
 // Add both to retrieve req.body from form POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use(morgan('dev'));
 
 app.use(helmet());
 
