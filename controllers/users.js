@@ -18,21 +18,19 @@ exports.getUsers = async (req, res) => {
 // @route POST /api/users 
 // @access Public
 exports.registerUser = async (req, res) => {
+    const { firstName, lastName, email, password } = req.body;
+    const saltRounds = 10;
+    const hash = await bcrypt.hash(password, saltRounds);
+    const newUser = {
+        firstName,
+        lastName,
+        email,
+        password: hash
+    }
     try {
         console.log('Registering user...');
-        console.log(req.body);
-
-        // Get password to salt
-        
-        // const saltRounds = 10;
-
-        // bcrypt.genSalt(saltRounds, function(err, salt) {
-        //     bcrypt.hash(myPlaintextPassword, salt, function(err, hash) {
-        //         // Store hash in your password DB.
-        //     });
-        // });
-
-        const user = await User.create(req.body);
+        const user = await User.create(newUser);
+        console.log('User created successfully.');
         return res.status(200).json({ success: true, data: user });
     } catch(err) {
         console.log(err)
