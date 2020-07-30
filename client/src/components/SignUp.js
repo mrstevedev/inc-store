@@ -89,10 +89,6 @@ export class SignUp extends Component {
     }
   };
 
-  createHashPass(event) {
-    console.log("createHashPass");
-  }
-
   render() {
     return (
       <Fragment>
@@ -178,7 +174,6 @@ export class SignUp extends Component {
                     name="password"
                     value={this.state.password}
                     onChange={this.onChangeHandler}
-                    onFocus={this.createHashPass}
                     className={this.state.errorPassword === true ? "error" : ""}
                   />
                   <ShowToggle
