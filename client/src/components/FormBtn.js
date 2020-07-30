@@ -12,7 +12,7 @@ export default class FormBtn extends PureComponent {
             margin: 1rem 0;
             cursor: pointer;
             outline: none;
-            border-radius: 3px;
+            // border-radius: 3px;
             transition: .12s ease-in-out;
             &:hover {
                 background: #fff;
