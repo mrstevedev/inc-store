@@ -16,6 +16,7 @@ export class SignUp extends PureComponent {
       password: "",
       signup: "Create account",
       buttonText: "Show",
+      success: false
     };
   }
 
@@ -26,7 +27,7 @@ export class SignUp extends PureComponent {
     });
   };
 
-  handleRegisterUser(event) {
+  handleSignUp(event) {
     event.preventDefault();
 
     axios({
@@ -34,11 +35,17 @@ export class SignUp extends PureComponent {
       header: {
         "Content-Type": "application/json",
       },
-      url: "http://localhost:9000/api/users",
+      url: "http://localhost:5000/api/users",
       data: this.state,
     })
-      .then((res) => console.log("res::::::::", res.data))
-      .catch((err) => console.log(err));
+      .then((res) => {
+          console.log(res.data);
+          if(res.data.success === true) {
+              this.setState({ success: 'true' })
+          } else {
+              this.setState({ success: false })
+          }
+      }).catch((err) => console.log(err));
   }
 
   handleShowToggle = () => {
@@ -61,14 +68,21 @@ export class SignUp extends PureComponent {
     <Fragment>
       <div className="inc__form">
         <h2>Create Account</h2>
-        <p>
-          Already have an account? <Link to="/signin">Sign in.</Link>
+        <p className="inc__form--header-notice">
+          Already have an account? <Link to="/signin">
+              <span>Sign in</span>.
+            </Link>
         </p>
-        <form onSubmit={this.handleRegisterUser.bind(this)}>
-          <span className="inc__required">*</span>Required
+        {this.state.success === false ? (
+            <form onSubmit={this.handleSignUp.bind(this)}>
+            <div>
+                <span className="inc__required">*</span>
+                <span>Required</span>
+            </div>
           <div>
             <label>
-              First name<span className="inc__required">*</span>
+              First name
+              <span className="inc__required">*</span>
             </label>
             <input
               type="text"
@@ -124,10 +138,15 @@ export class SignUp extends PureComponent {
           <div>
             <FormBtn
               btnText={this.state.signup}
-              handleSignIn={this.handleSignIn}
             />
           </div>
         </form>
+        )  : (
+            <div>
+                <h2>Created your account successfully</h2>
+            </div>
+        ) }
+        
       </div>
     <Ad />
     </Fragment>
