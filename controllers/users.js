@@ -1,6 +1,20 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
+// @desc Get a single user
+// @route POST /api/users 
+// @access Private
+exports.signInUser = async (req, res) => {
+    try {
+        return res.status(200).json({ success: true });
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+// @desc Get all users
+// @route POST /api/users 
+// @access Private
 exports.getUsers = async (req, res) => {
     try {
         const users = await User.find();
@@ -21,12 +35,12 @@ exports.registerUser = async (req, res) => {
     const { firstName, lastName, email, password } = req.body;
     const saltRounds = 10;
     const hash = await bcrypt.hash(password, saltRounds);
-    const newUser = {
+    const newUser = new User({
         firstName,
         lastName,
         email,
         password: hash
-    }
+    });
     try {
         console.log('Registering user...');
         const user = await User.create(newUser);
