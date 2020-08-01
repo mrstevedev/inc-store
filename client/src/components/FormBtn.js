@@ -24,7 +24,8 @@ export default class FormBtn extends PureComponent {
         border: solid 1px #000;
         color: #000;
       }
-      &:active {
+      &:active,
+      &:focus {
         background: #000;
         border: solid 1px #000;
         color: #fff;
@@ -32,13 +33,15 @@ export default class FormBtn extends PureComponent {
     `;
     return (
       <Button onClick={this.props.handleSignIn}>
-        <SpinnerCircularFixed
-          size={22}
-          thickness={100}
-          speed={100}
-          color="rgba(57, 156, 172, 1)"
-          secondaryColor="rgba(0, 0, 0, 0.44)"
-        />
+        {this.props.formSubmit === true ? (
+            <SpinnerCircularFixed
+            size={22}
+            thickness={100}
+            speed={100}
+            color="rgba(57, 156, 172, 1)"
+            secondaryColor="rgba(0, 0, 0, 0.44)"
+          />
+        ) : "" }
         <span className="inc__form-btn--text">{this.props.btnText}</span>
       </Button>
     );
