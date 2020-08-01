@@ -5,7 +5,7 @@ const LocalStrategy = require("passport-local").Strategy;
 module.exports = function (passport) {
   passport.use(
     new LocalStrategy((username, password, done) => {
-        User.findOne({ username, username }, (err, user) => {
+        User.findOne({ email: username }, (err, user) => {
             if(err) throw err;
             if(!user) return done(null, false)
             bcrypt.compare(password, user.password, (err, result) => {
@@ -27,7 +27,7 @@ module.exports = function (passport) {
 
   // Deserialize User
   passport.deserializeUser(function (id, done) {
-    User.findById( { _id: id }, function (err, user) {
+    User.findOne( { _id: id }, function (err, user) {
       done(err, user);
     });
   });
