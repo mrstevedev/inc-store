@@ -15,8 +15,16 @@ export class SignIn extends Component {
       errorEmail: false,
       errorPassword: false,
       signin: "Sign in",
-      buttonText: "Show"
+      buttonText: "Show",
+      formSubmit: false,
+      user: {}
     };
+  }
+
+  componentDidMount() {
+    if(this.props.location.state !== undefined ) {
+      console.log('has location.state')
+    }
   }
 
   handleShowToggle = () => {
@@ -38,7 +46,8 @@ export class SignIn extends Component {
       }
       if(this.state.password !== '') {
         this.setState({ errorPassword: false });
-    }
+      }
+
       this.setState({
         [event.target.name]: value
       })
@@ -47,17 +56,29 @@ export class SignIn extends Component {
   handleSignIn = (event) => {
     event.preventDefault();
 
-    if (this.state.email === "" || this.state.errorPassword === "") {
-      this.setState({ errorEmail: true, errorPassword: true });
+    if (this.state.email === "") {
+      this.setState({ errorEmail: true });
     } 
-
-    axios({
-      method: "post",
-      url: "http://localhost:5000/signin",
-      config: { headers: { "Content-Type": "application/json" } },
-    })
-      .then((response) => console.log(response))
-      .catch((err) => console.log(err));
+    
+    if (this.state.password === "") {
+      this.setState({ errorPassword: true });
+    } else {
+      axios({
+        method: "POST",
+        url: "http://localhost:5000/signin",
+        data: {
+          username: this.state.email,
+          password: this.state.password
+        },
+        withCredentials: true
+      }).then((res) => {
+          console.log(res);
+          this.setState({ formSubmit: true, user: res.data.user });
+          if(this.state.user) {
+            this.props.history.push('/', { message: 'You are now logged in', user: this.state.user } );
+          }
+        }).catch((err) => console.log(err));
+    }
   };
 
   render() {
@@ -71,6 +92,11 @@ export class SignIn extends Component {
             <span>Create an account</span>.
           </Link>
         </p>
+        { this.props.location.state !== undefined ? (
+            <div className="inc__form--sucesss-notice-container">
+              <p className="inc__form--sucesss-notice-text">{ this.props.location.state.message }</p>
+            </div>
+        ) : '' }
         <form onSubmit={this.handleSignIn.bind(this)}>
           <label>Email</label>
           <input
@@ -82,7 +108,7 @@ export class SignIn extends Component {
           {this.state.errorEmail === true ?  <div className="inc__form--error-msg">Email is required</div> : ""}
          
           <label>Password</label>
-          <div className="input-control">
+          <div className="inc__form-input-control">
             <input
               type="password"
               id="password"
@@ -98,16 +124,17 @@ export class SignIn extends Component {
           <p>
             <Link to="/signin/password-reset">Forgot password?</Link>
           </p>
-          <div className="keep__signedin">
+          <div className="inc__form-keep-signedin ">
             <input type="checkbox" name="keep_signedin" />
-            <p>Keep me signed in. Details </p>
+            <p>Keep me signed in. <Link to="#">Details</Link></p>
           </div>
-          <p>
-            By signing in to your account, you agree to our Privacy Policy and
-            Terms & Conditions.
+          <p className="inc__form--terms">
+            By signing in to your account, you agree to our <Link to="#">Privacy Policy</Link> and {" "}
+            <Link to="#">Terms & Conditions.</Link>
           </p>
           <div>
             <FormBtn
+              formSubmit={this.state.formSubmit}
               btnText={this.state.signin}
             />
           </div>
