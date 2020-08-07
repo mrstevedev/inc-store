@@ -30,10 +30,15 @@ export default class FormBtn extends PureComponent {
         border: solid 1px #000;
         color: #fff;
       }
+      .btn-active {
+        background: #000;
+        border: solid 1px #000;
+        color: #fff;
+      }
     `;
     return (
-      <Button onClick={this.props.handleSignIn}>
-        {this.props.formSubmit === true ? (
+      <Button className={ this.props.formSubmit ? 'btn-active' : '' } onClick={this.props.handleSignIn}>
+        {this.props.formSubmit !== false ? (
             <SpinnerCircularFixed
             size={22}
             thickness={100}
