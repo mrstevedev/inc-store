@@ -1,15 +1,21 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const passport = require('passport');
 
 // @desc Get a single user
 // @route POST /api/users 
 // @access Private
-exports.signInUser = async (req, res) => {
-    try {
-        return res.status(200).json({ success: true });
-    } catch(err) {
-        console.log(err);
+exports.signInUser = async (req, res, next) => {
+   passport.authenticate('local', (err, user, info) => {
+    if(err) throw err;
+    if(!user) res.send('No user exists')
+    else {
+        req.logIn(user, err => {
+            if(err) throw err;
+            res.status(200).json({ message: 'Successfully Authenticated', user: req.user })
+        })
     }
+   })(req, res, next)
 }
 
 // @desc Get all users
@@ -47,6 +53,6 @@ exports.registerUser = async (req, res) => {
         console.log('User created successfully.');
         return res.status(200).json({ success: true, data: user });
     } catch(err) {
-        console.log(err)
+        res.send(err)
     }
 }
