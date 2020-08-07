@@ -51,11 +51,20 @@ export class SignUp extends Component {
   handleSignUp(event) {
     event.preventDefault();
 
-    if (this.state.firstName === "" ||
-      this.state.lastName === ""  ||
-      this.state.email === ""     ||
-      this.state.password === "" ) {
-      this.setState({ errorFirstName: true, errorLastName: true, errorEmail: true, errorPassword: true });
+    if (this.state.firstName === "") {
+      this.setState({ errorFirstName: true });
+    }
+    
+    if (this.state.lastName === "") {
+      this.setState({ errorLastName: true });
+    }
+
+    if (this.state.email === "") {
+      this.setState({ errorEmail: true });
+    }
+
+    if (this.state.password === "") {
+      this.setState({ errorPassword: true });
     }
 
     axios({
@@ -70,7 +79,7 @@ export class SignUp extends Component {
         console.log(res.data);
         if (res.data.success === true) {
           this.setState({ formSubmit: true });
-          this.props.history.push('/signin');
+          this.props.history.push('/signin', { message: 'Account created successfully. Sign in below' } );
         }
       })
       .catch((err) => console.log(err));
