@@ -109,14 +109,14 @@ export class SignUp extends Component {
                 </Link>
               </p>
               <form onSubmit={this.handleSignUp.bind(this)}>
-                <div>
-                  <span className="inc__required">*</span>
+                <div className="inc__form-required-label">
+                  <span className="inc__form-required">*</span>
                   <span>Required</span>
                 </div>
                 <div>
                   <label>
                     First name
-                    <span className="inc__required">*</span>
+                    <span className="inc__form-required">*</span>
                   </label>
                   <input
                     type="text"
@@ -136,7 +136,7 @@ export class SignUp extends Component {
                 )}
                 <div>
                   <label>
-                    Last name<span className="inc__required">*</span>
+                    Last name<span className="inc__form-required">*</span>
                   </label>
                   <input
                     type="text"
@@ -155,7 +155,7 @@ export class SignUp extends Component {
                   ""
                 )}
                 <label>
-                  Email<span className="inc__required">*</span>
+                  Email<span className="inc__form-required">*</span>
                 </label>
                 <input
                   type="email"
@@ -171,9 +171,9 @@ export class SignUp extends Component {
                   ""
                 )}
                 <label>
-                  Create password<span className="inc__required">*</span>
+                  Create password<span className="inc__form-required">*</span>
                 </label>
-                <div className="input-control">
+                <div className="inc__form-input-control">
                   <input
                     type="password"
                     id="password"
