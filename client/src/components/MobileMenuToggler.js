@@ -6,7 +6,7 @@ export default class MobileMenuToggler extends PureComponent {
       <Fragment>
         <div className="menu">
           <div className="menu-icon">
-            <input className="menu-icon__cheeckbox" type="checkbox" onFocus={this.props.handleMenuOpen} />
+            <input className="menu-icon__checkbox" type="checkbox" onClick={this.props.handleMenuOpen} />
             <div>
               <span></span>
               <span></span>
