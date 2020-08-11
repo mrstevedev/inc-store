@@ -17,6 +17,7 @@ export class SignIn extends Component {
       signin: "Sign in",
       buttonText: "Show",
       formSubmit: false,
+      error: "",
       user: {}
     };
   }
@@ -72,7 +73,9 @@ export class SignIn extends Component {
         },
         withCredentials: true
       }).then((res) => {
-          console.log(res);
+          if(res.data==="No user exists") {
+            this.setState({ error: res.data });
+          }
           this.setState({ formSubmit: true, user: res.data.user });
           if(this.state.user) {
             this.props.history.push('/', { message: 'You are now logged in', user: this.state.user } );
@@ -98,6 +101,11 @@ export class SignIn extends Component {
             </div>
         ) : '' }
         <form onSubmit={this.handleSignIn.bind(this)}>
+        { this.state.error ? (
+                  <div className="inc__form-error">
+                   <p>{ this.state.error }</p>
+                </div>
+                ) : '' }
           <label>Email</label>
           <input
             type="email"
