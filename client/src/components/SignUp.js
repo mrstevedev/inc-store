@@ -21,6 +21,7 @@ export class SignUp extends Component {
       errorEmail: false,
       errorPassword: false,
       formSubmit: false,
+      error: ""
     };
   }
 
@@ -73,16 +74,30 @@ export class SignUp extends Component {
         "Content-Type": "application/json",
       },
       url: "http://localhost:5000/api/users",
-      data: this.state,
+      data: {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.email,
+        password: this.state.password
+      }
     })
       .then((res) => {
-        console.log(res.data);
+        console.log('res::::', res.data);
+        const errors = Object.entries(res.data.errors);
+        console.log("errors::::", errors);
+
+        if(res.data.errors) {
+          errors.map(err => {
+            this.setState({ error: err[1] });
+          })
+        }
+        
         if (res.data.success === true) {
           this.setState({ formSubmit: true });
           this.props.history.push('/signin', { message: 'Account created successfully. Sign in below' } );
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log('err:::::', err));
   }
 
   handleShowToggle = () => {
@@ -109,6 +124,11 @@ export class SignUp extends Component {
                 </Link>
               </p>
               <form onSubmit={this.handleSignUp.bind(this)}>
+                { this.state.error ? (
+                  <div className="inc__form-error">
+                   <p>{ this.state.error }</p>
+                </div>
+                ) : '' }
                 <div className="inc__form-required-label">
                   <span className="inc__form-required">*</span>
                   <span>Required</span>
