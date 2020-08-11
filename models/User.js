@@ -3,41 +3,26 @@ const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema({
     firstName: {
         type: String,
-        required: true
+        required: 'First name is required',
     },
     lastName: {
         type: String,
-        required: true
+        required: 'Last name is required',
     },
     email: {
         type: String,
-        required: true,
+        required: 'Email is required',
+        match: [/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/, 'Invalid email format'],
         validate: {
-            isAsync: true,
-            validator: function(value, isValid) {
-                const self = this;
-                return self.constructor.findOne({ email: value })
-                .exec(function(err, user){
-                    if(err){
-                        throw err;
-                    }
-                    else if(user) {
-                        if(self.id === user.id) {  // if finding and saving then it's valid even for existing email
-                            return isValid(true);
-                        }
-                        return isValid(false);  
-                    }
-                    else{
-                        return isValid(true);
-                    }
-                })
+            validator: function(v){
+                return this.model('User').findOne({ email: v }).then(user => !user)
             },
-            message:  'The email address is already taken!'
+            message: props => `${props.value} is already used by another user`
         },
     },
     password: {
         type: String,
-        required: true
+        required: 'Password is required'
     },
     date: {
         type: Date,
