@@ -8,13 +8,13 @@ import MobileMenu from './MobileMenu';
 
 class Header extends Component {
 
-  handleMenuOpen() {
+  handleMenuOpen = () => {
     console.log('show mobile side menu');
     const mobileMenu = document.querySelector('.mobile-menu');
 
     setTimeout(() => {
       mobileMenu.classList.toggle('show');
-    }, 300);
+    }, 100);
   }
 
   render() { 
