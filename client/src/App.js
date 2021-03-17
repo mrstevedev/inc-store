@@ -30,8 +30,8 @@ class App extends Component {
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/cart" component={Cart} />
+            <MobileMenu />
           </Router>
-          <MobileMenu />
         </div>
         <Footer />
       </Fragment>
