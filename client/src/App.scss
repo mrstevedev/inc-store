@@ -19,10 +19,9 @@ body {
 
 .container {
   h1 {
-    font-size: 0.83rem;
-    font-weight: 400;
+    font-size: 0.660rem;
     margin: 0;
-    letter-spacing: 1px;
+    text-transform: uppercase;
   }
 
   a {
@@ -31,7 +30,7 @@ body {
   }
 
   .active {
-    color: cornflowerblue;
+    color: #989898;
   }
 
   p {
@@ -44,35 +43,17 @@ body {
 
   li {
     a {
-      font-size: 0.9rem;
-      text-transform: capitalize;
-      // font-weight: 500;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: bold;
 
       &:hover {
         content: "";
       }
     }
 
-    // .active:after {
-    //   content: "";
-    //   display: block;
-    //   height: 2px;
-    //   background: cornflowerblue;
-    //   width: 100%;
-    //   margin: 4px auto;
-    // }
-
-    // &:hover:after {
-    //   content: "";
-    //   display: block;
-    //   height: 2px;
-    //   background: #333;
-    //   width: 100%;
-    //   margin: 4px auto;
-    // }
-
     &.active:after {
-      background: cornflowerblue;
+      background: #008cfb;
     }
   }
 
@@ -137,19 +118,43 @@ body {
     }
     label {
       display: block;
-      font-size: 0.8rem;
+      font-size: 0.58rem;
       font-weight: 500;
+      text-transform: uppercase;
     }
 
     .inc__form--error-msg {
       color: #d64d4d;
       font-weight: bold;
       text-align: right;
-      font-size: 12px;
+      font-size: 11px;
     }
+
+    .inc__form-error {
+      padding: 0.7rem;
+      background: #fbe5e5;
+      margin: 1rem 0;
+
+      p {
+        color: #e45b5b;
+        font-weight: bold;
+        font-size: 0.77rem;
+      }
+  }
 
     .inc__form-btn--text {
       margin: 0 0.5rem;
+    }
+
+    .inc__form--sucesss-notice-container {
+      padding: 1rem 2rem;
+      background: #6495ed;
+      color: #fff;
+      font-weight: bold;
+
+      .inc__form--sucesss-notice-text {
+        color: #fff;
+      }
     }
 
     .inc__form--header-notice {
@@ -169,7 +174,7 @@ body {
       }
     }
 
-    .input-control {
+    .inc__form-input-control {
       position: relative;
       display: flex;
       align-items: center;
@@ -186,8 +191,11 @@ body {
       outline: none;
       margin: 0.7rem 0;
       text-indent: 1rem;
-      // border-radius: 3px;
       transition: .22s ease-in-out;
+
+      &:hover {
+        background: #f5f6fa;
+      }
     }
 
     input[type="text"]:focus,
@@ -204,10 +212,11 @@ body {
     }
 
     .inc__form--terms {
-      margin: 1rem 0 1rem 0;
+      margin: 1rem 0 2rem 0;
+      line-height: 20px;
     }
 
-    .keep__signedin {
+    .inc__form-keep-signedin {
       display: flex;
       margin: 0.6rem 0;
 
@@ -220,6 +229,30 @@ body {
       }
     }
   }
+  .mobile-menu.show {
+    height: 100%;
+    transform: translateX(400px);
+  }
+  
+  .inc__form-required {
+    color: red;
+    padding: 0.06rem;
+  }
+
+  .inc__form-required-label {
+    margin: 0.5rem 0 0.8rem 0;
+  }
+  
+  ::selection {
+    background-color: #000;
+    color: #fff;
+  }
+}
+
+.footer {
+  background: #f2f2f2;
+  width: 100%;
+  height: 400px;
 }
 
 // Hamburger Menu Styles
@@ -227,6 +260,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 9;
 }
 
 .menu-icon {
@@ -235,7 +270,7 @@ body {
   width: 24px;
   height: 24px;
 
-  .menu-icon__cheeckbox {
+  .menu-icon__checkbox {
     display: block;
     width: 100%;
     height: 100%;
@@ -273,7 +308,7 @@ body {
     }
   }
   &.active,
-  .menu-icon__cheeckbox:checked + div {
+  .menu-icon__checkbox:checked + div {
     span {
       &:first-of-type {
         transform: rotate(45deg);
@@ -288,8 +323,8 @@ body {
 
   &.active:hover span:first-of-type,
   &.active:hover span:last-of-type,
-  &:hover .menu-icon__cheeckbox:checked + div span:first-of-type,
-  &:hover .menu-icon__cheeckbox:checked + div span:last-of-type {
+  &:hover .menu-icon__checkbox:checked + div span:first-of-type,
+  &:hover .menu-icon__checkbox:checked + div span:last-of-type {
     width: 22px;
   }
 
@@ -341,26 +376,31 @@ body {
   }
 }
 
-.mobile-menu {
-  display: none;
+@media(min-width: 415px) {
+  #menu {
+    display: none
+  }
 }
 
-.show {
-  display: block;
+#menu {
+ list-style: none;
+
+ li { 
+  padding: 1rem 0;
+
+  a {
+    font-weight: bold;
+    transition: .12s ease-in-out;
+    font-size: 1rem;
+    text-transform: uppercase;
+    
+    &:hover {
+      color: #008cfb;
+    }
+  }
+ }
 }
 
-.inc__required {
-  color: red;
-  padding: 0.06rem;
-}
-
-::selection {
-  background-color: #000;
-  color: #fff;
-}
-
-.footer {
-  background: #f2f2f2;
-  width: 100%;
-  height: 400px;
+#menu-icon input:checked ~ ul {
+  transform: none;
 }
