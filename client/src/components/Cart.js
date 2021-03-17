@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
+import styled from "styled-components";
 
 export default class Cart extends Component {
     render() {
+        const Cart = styled.div`
+            margin: 4rem 0 6rem 0;
+      `;
         return (
-            <div>
+            <Cart>
                 <h1>Your bag is empty</h1>
                 <a className="continue__shopping--btn btn" href="/">Continue Shopping</a>
                 <p>
                 Need help? Call 1.888.282.6060 or chat with us
                 </p>            
                 <p>Shipping internationally?</p>
-            </div>
+            </Cart>
         )
     }
 }

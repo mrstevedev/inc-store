@@ -8,7 +8,7 @@ import Cart from './components/Cart';
 import MobileMenu from "./components/MobileMenu.js";
 import Footer from "./components/Footer.js";
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
 
 class App extends Component {
   constructor(props) {
