@@ -11,10 +11,9 @@ class Header extends Component {
   handleMenuOpen = () => {
     console.log('show mobile side menu');
     const mobileMenu = document.querySelector('.mobile-menu');
+    mobileMenu.classList.toggle('show');
 
-    setTimeout(() => {
-      mobileMenu.classList.toggle('show');
-    }, 100);
+    
   }
 
   render() { 
