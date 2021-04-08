@@ -131,6 +131,28 @@ body {
       font-size: 11px;
     }
 
+    .inc__form--success-msg {
+      color: #70b99a;
+      font-weight: bold;
+      text-align: right;
+      font-size: 11px;
+    }
+
+    .inc__form--link {
+      // color: cornflowerblue;
+
+      background-image: linear-gradient(
+        0deg
+        , #393939, #393939);
+            background-position: bottom;
+            background-repeat: no-repeat;
+            background-size: 100% 1px;
+            border-bottom: 1px solid transparent;
+            cursor: pointer;
+            text-decoration: none;
+            transition: border-color .3s;
+    }  
+
     .inc__form-error {
       padding: 0.7rem;
       background: #fbe5e5;
