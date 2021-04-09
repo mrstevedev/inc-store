@@ -6,7 +6,7 @@ export class Hero extends Component {
     const Hero = styled.div`
         background: #000;
         height: 330px;
-        margin: 0 0 5rem 0;
+        margin: 3rem 0 5rem 0;
         box-shadow: 0 4px 2px 0 #eaeaea;
         // border-radius: 12px;
     `;
