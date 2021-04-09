@@ -10,9 +10,12 @@ class TopNotification extends Component {
       justify-content: center;
       align-items: center;
       font-size: 0.8rem;
+      position: relative;
+      z-index: 3;
+      color: #fff
     `;
     return <Notification>
-        <p><strong>Summer Sale!</strong> INC2020 as coupon code</p>
+        <p><strong>Summer Sale!</strong> <u>INC2020</u> as coupon code</p>
     </Notification>;
   }
 }
