@@ -4,6 +4,7 @@ import ShowToggle from "./ShowToggle";
 import FormBtn from "./FormBtn";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { validateEmail } from '../util';
 import Ad from './Ad';
 
 export class SignIn extends Component {
@@ -59,7 +60,7 @@ export class SignIn extends Component {
 
     if (this.state.email === "") {
       this.setState({ errorEmail: true });
-    } 
+    }
     
     if (this.state.password === "") {
       this.setState({ errorPassword: true });
@@ -73,8 +74,9 @@ export class SignIn extends Component {
         },
         withCredentials: true
       }).then((res) => {
-          if(res.data==="No user exists") {
-            this.setState({ error: res.data });
+          console.log(res);
+          if(res.data.message) {
+            this.setState({ error: res.data.message });
           }
           this.setState({ formSubmit: true, user: res.data.user });
           if(this.state.user) {
@@ -113,7 +115,10 @@ export class SignIn extends Component {
             onChange={this.handleChange}
             className={this.state.errorEmail === true ? "error" : ""}
           />
-          {this.state.errorEmail === true ?  <div className="inc__form--error-msg">Email is required</div> : ""}
+          {this.state.errorEmail === true ?  
+          <div className="inc__form--error-msg">Email is required</div> : 
+              validateEmail(this.state.email) ? 
+            <div className="inc__form--success-msg">Email is valid</div> : ''}
          
           <label>Password</label>
           <div className="inc__form-input-control">
@@ -130,7 +135,7 @@ export class SignIn extends Component {
           </div>
           {this.state.errorPassword === true ?  <div className="inc__form--error-msg">Password is required</div> : ""}
           <p>
-            <Link to="/signin/password-reset">Forgot password?</Link>
+            <Link to="/signin/password-reset" className="inc__form--link">Forgot password?</Link>
           </p>
           <div className="inc__form-keep-signedin ">
             <input type="checkbox" name="keep_signedin" />
