@@ -80,7 +80,9 @@ export class SignIn extends Component {
           }
           this.setState({ formSubmit: true, user: res.data.user });
           if(this.state.user) {
-            this.props.history.push('/', { message: 'You are now logged in', user: this.state.user } );
+            setTimeout(() => {
+              this.props.history.push('/', { message: 'You are now logged in', user: this.state.user } );
+            }, 4000)
           }
         }).catch((err) => console.log(err));
     }
