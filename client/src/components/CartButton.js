@@ -4,14 +4,23 @@ import { Link } from "react-router-dom";
 export default class CartButton extends Component {
   render() {
     return (
-      <div style={{ "position": "relative", "top": "2px" }}>
+      <div className="inc__cartBtn" style={{ "background": '#f2f2f2', 'height': '40px',
+        'width': '40px',
+        'display': 'flex',
+        'justifyContent': 'center',
+        'alignItems': 'center',
+        "borderRadius": "100%", 
+        'position': 'relative',
+        'bottom': '2px' }}>
         <Link to="/cart">
           <svg
-            width="22"
-            height="22"
+            width="21"
+            height="21"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            style={{ 'position': 'relative',
+              'top': '2px' }}
           >
             <path
               fillRule="evenodd"
@@ -34,8 +43,8 @@ export default class CartButton extends Component {
             "background": "#000",
             "width": "17px",
             "height": "17px",
-            "top": "-4px",
-            "right": "-7px",
+            "top": "0px",
+            "right": "-1px",
             "borderRadius": "100%",
             "color": "#fff",
             "fontSize": "0.7rem",
