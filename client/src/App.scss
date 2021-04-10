@@ -1,3 +1,22 @@
+$blue-1: #fff;
+$blue-2: #E5F1FF;
+$blue-3: #0059A5;
+$blue-4: #132434;
+
+// http://www.colorhunt.co/c/79451
+$custom-1: #FEFAEC;
+$custom-2: #A9EEE6;
+$custom-3: #F38181;
+$custom-4: #625772;
+
+$color-1: $custom-1;
+$color-2: $custom-2;
+$color-3: $custom-3;
+$color-4: $custom-4;
+
+$base-unit: 1.5rem;
+$header-height: $base-unit * 3;
+
 body {
   margin: 0;
   padding: 0;
@@ -37,16 +56,14 @@ body {
     margin: 0;
     color: #000;
   }
-  padding-left: 15px;
-  padding-right: 15px;
   margin: 0 auto;
   width: 1500px;
 
   li {
     a {
-      font-size: 0.7rem;
+      font-size: 0.66rem;
       text-transform: uppercase;
-      font-weight: bold;
+      font-weight: 400;
 
       &:hover {
         content: "";
@@ -58,24 +75,11 @@ body {
     }
   }
 
-  .fapsEL,
+
   .OVBYh,
   .ktTuSi {
-    padding: 0 2rem 0 0;
-    .inc__form--searchBtn {
-      border: none;
-      width: 48px;
-      font-size: 0.9rem;
-      text-transform: capitalize;
-      font-weight: bold;
-      outline: none;
-      cursor: pointer;
-      border-bottom: solid 2px;
-      text-indent: 2.2rem;
-      padding: 0.7rem 0;
-      background: #f1f1f1;
-      cursor: auto;
-    }
+    
+   
     svg {
       margin: 1px 3px 0px 3px;
       // position: absolute;
@@ -124,6 +128,10 @@ body {
       text-transform: uppercase;
     }
 
+    .inc_form-group {
+      margin: 0 0 1rem 0;
+    }
+
     .inc__form--error-msg {
       color: #d64d4d;
       font-weight: bold;
@@ -132,7 +140,7 @@ body {
     }
 
     .inc__form--success-msg {
-      color: #70b99a;
+      color: #38bd85;
       font-weight: bold;
       text-align: right;
       font-size: 11px;
@@ -427,4 +435,149 @@ body {
 
 #menu-icon input:checked ~ ul {
   transform: none;
+}
+
+.inc__megaMenu {
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 28rem;
+  left: 0;
+  top: 7rem;
+  opacity: 0;
+  padding-top: 8rem;
+  transform: translate3d(0,-100%,0);
+  will-change: transform;
+
+  .inc__megaMenu-cols {
+    display: flex;
+
+    .inc__megaMenu-title {
+      border-bottom: solid 1px #e2e2e2;
+      padding: 0.2rem 0 1rem 0;
+      margin: 0;
+    }
+
+    .inc__megaMenu-list {
+      width: 300px;
+      padding: 0 2rem 0 0;
+  }
+}
+
+  ul {
+    list-style: none;
+    padding: 0;
+    li {
+      padding: 0.4rem 0;
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+  }
+  
+  &.is-open,
+  &.is-closed {
+    animation-duration: .38s;
+    animation-fill-mode: both;
+  }
+  
+  &.is-open {
+    animation-name: bounceInDown;
+    opacity: 1;
+
+    
+    > ul {
+      opacity: 1;
+      transition: opacity .19s cubic-bezier(.62, 0, .8, .38);
+    }
+  }
+  
+  &.is-closed {
+    animation-duration: .19s;
+    animation-name: slideOutUp;
+    
+    > ul {
+      opacity: 0;
+      transition: opacity .1s cubic-bezier(.2, .62, .38, 1);
+    }
+  }
+  
+  > ul {
+    padding-top: $base-unit * 2;
+    border-top: 1px solid rgba($color-3, .2);
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    
+    will-change: opacity;
+    
+    > li {
+      flex: 0 1 $base-unit * 6;
+      min-height: $header-height * 2;
+    }
+  }
+  
+  li {
+    ul {
+      font-size: 0.875rem;
+      color: $color-3;
+      padding: $base-unit / 2 0;
+    }
+  }
+}
+
+@keyframes slideOutUp {
+  from {
+    transform: translate3d(0,#{$header-height * -1},0);
+    animation-timing-function: cubic-bezier(.2, .62, .38, 1);
+  }
+
+  to {
+    transform: translate3d(0,-100%,0);
+  }
+}
+
+@keyframes bounceInDown {
+  from, 60%, to {
+    animation-timing-function: cubic-bezier(.2, .62, .38, 1);
+  }
+
+  60% {
+    transform: translate3d(0, #{($header-height * -1) + ($base-unit * .5)}, 0);
+  }
+
+  to {
+    transform: translate3d(0, #{($header-height * -1)}, 0);
+  }
+}
+
+.bounce {
+ animation-name: bounce;
+}
+
+.bounce {
+  animation-name: bounce;
+ }
+
+ .inc__cartBtn {
+   transition: .22s ease-in-out;
+   &:hover {
+    background: rgb(233, 233, 233) !important;
+   }
+ }
+
+ .btn-active {
+  background: #000 !important;
+  border: solid 1px #000 !important;
+  color: #fff !important;
+}
+
+.inc__megaMenu-list {
+  li {
+    a {
+      transition: .22s ease-in-out;;
+      &:hover {
+        background: #f2f2f2;
+      }
+    }
+  }
 }
