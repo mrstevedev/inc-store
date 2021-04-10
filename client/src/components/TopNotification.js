@@ -15,7 +15,7 @@ class TopNotification extends Component {
       color: #fff
     `;
     return <Notification>
-        <p><strong>Summer Sale!</strong> <u>INC2020</u> as coupon code</p>
+        <p><strong>Spring Sale!</strong> <u>INC2020</u> as coupon code</p>
     </Notification>;
   }
 }
