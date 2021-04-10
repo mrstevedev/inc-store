@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default class Cart extends Component {
     render() {
         const Cart = styled.div`
-            margin: 4rem 0 6rem 0;
+            margin: 5rem 0 13rem 0;
       `;
         return (
             <Cart>
