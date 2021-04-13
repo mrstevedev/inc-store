@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 
 class Search extends Component {
-  handleSearch = (e) => {
+  handleOpenSearch = (e) => {
     e.preventDefault();
     
     const body = document.querySelector('body');
@@ -48,7 +48,7 @@ class Search extends Component {
     `;
     return (
       <Search id="search">
-        <button onClick={this.handleSearch} style={{ display: 'flex', border: 'none', outline: 'none', background: 'transparent' }}>
+        <button onClick={this.handleOpenSearch} style={{ display: 'flex', border: 'none', outline: 'none', background: 'transparent' }}>
           <svg
             id="search-icon"
             width="21"
