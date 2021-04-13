@@ -2,21 +2,55 @@ import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 
 class Search extends Component {
-  handleSearch = (event) => {
-    event.preventDefault();
+  handleSearch = (e) => {
+    e.preventDefault();
     
-    console.log('searching..')
+    const searchBtn = document.querySelector('#search');
+    const searchInput = document.querySelector('#search-input');
+    let active = false;
+
+    if(e.target.id === 'search' || e.target.id === 'search-input' || e.target.id === 'search-icon') {
+      if(!active) {
+        searchBtn.classList.add('active');
+        searchInput.classList.add('active');
+        setTimeout(() => {
+          searchInput.placeholder = 'Search store'
+          searchInput.style.opacity = 1;
+        }, 200)
+        active = true;
+      }
+    } else {
+        searchBtn.classList.remove('active');
+        searchInput.classList.remove('active');
+        searchInput.value = '';
+        searchInput.style.opacity = 0;
+        active = false;
+    }
+
+    
   }
   render() {
     const Search = styled.div`
-        padding: 0 2rem 0 0;
+        margin: 0 1.5rem 0 0;
+        background: #f2f2f2;
+        width: 37px;
+        height: 37px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+        transition: .22s ease-in-out;
+        &:hover {
+          background: #eaeaea;
+        }
     `;
     return (
-      <Search>
-        <a href="#" onClick={this.handleSearch}>
+      <Search id="search">
+        <a onClick={this.handleSearch}>
           <svg
-            width="23"
-            height="23"
+            id="search-icon"
+            width="21"
+            height="21"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -28,10 +62,13 @@ class Search extends Component {
               fill="currentColor"
             />
           </svg>
-          <span className="search-text">Search</span>
-          {/* <input type="text" value="Search" className="inc__form--searchBtn" /> */}
-        </a>
+          </a>
+          <form>
+            <input type="text" id="search-input" name="search" autoComplete="off" />
+          </form>
+
       </Search>
+      
     );
   }
 }
