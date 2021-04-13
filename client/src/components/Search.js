@@ -5,10 +5,12 @@ class Search extends Component {
   handleSearch = (e) => {
     e.preventDefault();
     
+    const body = document.querySelector('body');
     const searchBtn = document.querySelector('#search');
     const searchInput = document.querySelector('#search-input');
     let active = false;
 
+    body.addEventListener('click', (e) => {
     if(e.target.id === 'search' || e.target.id === 'search-input' || e.target.id === 'search-icon') {
       if(!active) {
         searchBtn.classList.add('active');
@@ -26,7 +28,7 @@ class Search extends Component {
         searchInput.style.opacity = 0;
         active = false;
     }
-
+  });
     
   }
   render() {
@@ -46,7 +48,7 @@ class Search extends Component {
     `;
     return (
       <Search id="search">
-        <a onClick={this.handleSearch}>
+        <button onClick={this.handleSearch} style={{ display: 'flex', border: 'none', outline: 'none', background: 'transparent' }}>
           <svg
             id="search-icon"
             width="21"
@@ -62,7 +64,7 @@ class Search extends Component {
               fill="currentColor"
             />
           </svg>
-          </a>
+          </button>
           <form>
             <input type="text" id="search-input" name="search" autoComplete="off" />
           </form>
