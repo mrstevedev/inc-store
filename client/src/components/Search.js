@@ -2,35 +2,6 @@ import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 
 class Search extends Component {
-  handleOpenSearch = (e) => {
-    e.preventDefault();
-    
-    const body = document.querySelector('body');
-    const searchBtn = document.querySelector('#search');
-    const searchInput = document.querySelector('#search-input');
-    let active = false;
-
-    body.addEventListener('click', (e) => {
-    if(e.target.id === 'search' || e.target.id === 'search-input' || e.target.id === 'search-icon') {
-      if(!active) {
-        searchBtn.classList.add('active');
-        searchInput.classList.add('active');
-        setTimeout(() => {
-          searchInput.placeholder = 'Search store'
-          searchInput.style.opacity = 1;
-        }, 200)
-        active = true;
-      }
-    } else {
-        searchBtn.classList.remove('active');
-        searchInput.classList.remove('active');
-        searchInput.value = '';
-        searchInput.style.opacity = 0;
-        active = false;
-    }
-  });
-    
-  }
   render() {
     const Search = styled.div`
         margin: 0 1.5rem 0 0;
@@ -48,7 +19,7 @@ class Search extends Component {
     `;
     return (
       <Search id="search">
-        <button onClick={this.handleOpenSearch} style={{ display: 'flex', border: 'none', outline: 'none', background: 'transparent' }}>
+        <button onClick={this.props.handleOpenSearch} style={{ display: 'flex', border: 'none', outline: 'none', background: 'transparent' }}>
           <svg
             id="search-icon"
             width="21"
