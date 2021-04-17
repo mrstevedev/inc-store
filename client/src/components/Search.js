@@ -18,7 +18,7 @@ class Search extends Component {
         }
     `;
     return (
-      <Search id="search">
+      <Search id="search" className={`${ this.props.toggleSearchContainer === true ? 'active' : '' }`}>
         <button onClick={this.props.handleOpenSearch} style={{ display: 'flex', border: 'none', outline: 'none', background: 'transparent' }}>
           <svg
             id="search-icon"
@@ -37,7 +37,7 @@ class Search extends Component {
           </svg>
           </button>
           <form>
-            <input type="text" id="search-input" name="search" autoComplete="off" />
+            <input type="text" id="search-input" name="search" autoComplete="off" className={`${ this.props.toggleSearchInput === true ? 'active' : '' }`} />
           </form>
 
       </Search>
